@@ -1,0 +1,27 @@
+---
+title: "HDI Analysis with Apriori Algorithm"
+output: html_notebook
+---
+
+```{r}
+# Load necessary libraries
+library(arules)
+library(readr)
+
+# Load your dataset
+hdi_data <- read_csv("human-development-index-hdi-2014.csv")
+
+# View the dataset structure (optional)
+str(hdi_data)
+
+# Convert data to transactions (you may need to adjust based on your dataset structure)
+# Assuming you have relevant columns to create transactions
+# Example: creating a transaction object from the dataset
+# Note: Adjust 'your_columns' based on your dataset
+trans <- as(hdi_data, "transactions")
+
+# Apply the Apriori algorithm
+rules <- apriori(trans, parameter = list(supp = 0.01, conf = 0.5))
+
+# Inspect the rules
+inspect(rules)
